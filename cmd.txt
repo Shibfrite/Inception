@@ -1,0 +1,49 @@
+docker run <img_name>
+docker run -it <img_name> (interactive terminal)
+docker run --rm <img_name>
+docker run --name=<docker_name> <img_name>
+docker run -it --rm <img_name>
+docker ps -a
+docker images
+docker stop <docker_id>
+docker start <docker_id>
+docker start -ai <docker_id> (attach interactive)
+docker exec -it <container_id>
+docker exec <container_id> <cmd>
+docker rm <id> (id can be incomplete)
+docker rmi <id>
+
+docker run -v <local_file>:<docker_file> <img_name>
+docker volume create <volume_name>
+docker volume ls
+docker volume rm <volume_name>
+
+docker run -p <local_port>:<docker_port> <img_name>
+
+docker network create --driver=<network_driver> <network_name>
+docker network connect <network_name> <docker_name>
+docker network rm <network_name>
+docker network ls
+
+docker build -t <img_name> <destination_path>
+
+docker compose up
+docker compose up -d
+docker compose rm
+docker compose stop
+
+docker-compose.yml:
+services:
+  <service_name>:
+    image: <image_name>
+      container_name: <container_name>
+      (for interactive containers:)
+      stdin_open: true
+      tty: true
+      (for mapped volumes:)
+      volumes:
+        - <local_file>:<docker_file>
+
+(for managed volumes:)
+volumes:
+  <volume_name>:
