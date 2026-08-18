@@ -1,11 +1,18 @@
 #!/bin/bash
-sed -i 's/bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
-mysqld_safe &
-sleep 3
-mysql -u root <<EOF
-CREATE DATABASE IF NOT EXISTS wordpress;
-CREATE USER IF NOT EXISTS 'wpuser'@'%' IDENTIFIED BY 'wppassword';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'%';
-FLUSH PRIVILEGES;
-EOF
+
+mysqld_safe --bind-address=0.0.0.0 &
+
+until mysqladmin ping --silent; do
+  sleep 1
+done
+
+echo "Ensuring database and user exist..."
+if ! mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`; \
+                       CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}'; \
+                       GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%'; \
+                       FLUSH PRIVILEGES;" 2>&1; then
+  echo "ERROR: Database creation failed" >&2
+  exit 1
+fi
+echo "Database setup completed."
 wait
