@@ -1,5 +1,4 @@
 services:
-
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
@@ -44,5 +43,13 @@ networks:
 volumes:
   db_data:
     driver: local
+    driver_opts:
+    type: none
+    o: bind
+    device: /home/makurek/data/mariadb
   wp_files:
     driver: local
+    driver_opts:
+    type: none
+    o: bind
+    device: /home/makurek/data/wordpress
