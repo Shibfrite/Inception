@@ -4,5 +4,5 @@ RUN apt-get update && apt-get install -y php-fpm php-mysql wget curl mariadb-cli
 && rm -rf /var/lib/apt/lists/*
 COPY tools/init.sh /init.sh
 RUN chmod +x /init.sh
-EXPOSE 9000
+#EXPOSE 9000
 CMD ["/init.sh"]

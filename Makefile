@@ -1,8 +1,9 @@
+include srcs/.env
 all:
-	echo "Junior42Lausanne" | sudo -S docker compose -f srcs/docker-compose.yml up --build
+	echo $(VM_PASSWORD) | sudo -S docker compose -f srcs/docker-compose.yml up --build
 
 down:
-	echo "Junior42Lausanne" | sudo -S docker compose -f srcs/docker-compose.yml down
+	echo $(VM_PASSWORD) | sudo -S docker compose -f srcs/docker-compose.yml down
 
 re: down all
 
