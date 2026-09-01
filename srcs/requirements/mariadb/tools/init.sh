@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mysqld_safe --bind-address=0.0.0.0 &
+exec mysqld_safe --bind-address=0.0.0.0 &
 
 until mysqladmin ping --silent; do
   sleep 1
