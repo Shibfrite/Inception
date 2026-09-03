@@ -44,12 +44,12 @@ volumes:
   db_data:
     driver: local
     driver_opts:
-    type: none
-    o: bind
-    device: /home/makurek/data/mariadb
+      type: none
+      o: bind
+      device: /home/makurek/data/mariadb
   wp_files:
     driver: local
     driver_opts:
-    type: none
-    o: bind
-    device: /home/makurek/data/wordpress
+      type: none
+      o: bind
+      device: /home/makurek/data/wordpress
