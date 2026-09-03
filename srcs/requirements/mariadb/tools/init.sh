@@ -1,5 +1,4 @@
 #!/bin/bash
-
 mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
 
@@ -11,11 +10,15 @@ FLUSH PRIVILEGES;
 EOF
 
 service mariadb start
-while pgrep -x mysqld >/dev/null; do
-	sleep 1
+until mysqladmin ping --silent; do
+  sleep 1
 done
-mariadb < /tmp/init.sql
-service mariadb end
+
+mariadb </tmp/init.sql
+
+service mariadb stop
+while pgrep -x mysqld >/dev/null; do
+  sleep 1
+done
 
 exec mysqld_safe
-#exec mysqld --bind-address=0.0.0.0 --init-file=/tmp/init.sql
