@@ -8,4 +8,4 @@ COPY tools/init.sh /init.sh
 RUN chmod +x /init.sh
 
 EXPOSE 443
-CMD ["/init.sh"]
+ENTRYPOINT ["/init.sh"]
