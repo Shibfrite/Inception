@@ -1,14 +1,8 @@
-mariadb  | Starting MariaDB database server: mariadbd.
-mariadb  | mysqld is alive
-mariadb  | /usr/bin/mysqladmin: connect to server at 'localhost' failed
-mariadb  | error: 'Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)'
-mariadb  | Check that mysqld is running and that the socket: '/run/mysqld/mysqld.sock' exists!
-nginx    | Generating a RSA private key
-nginx    | ...+++++
-nginx    | .........+++++
-nginx    | writing new private key to '/etc/nginx/ssl/key.pem'
-nginx    | -----
-mariadb  | Stopping MariaDB database server: mariadbd.
-mariadb  | 260903 15:26:12 mysqld_safe Logging to syslog.
-mariadb  | 260903 15:26:12 mysqld_safe Starting mariadbd daemon with databases from /var/lib/mysql
-
+#
+# If the same option is defined multiple times, the last one will apply.
+#
+# One can use all long options that the program supports.
+# Run program with --help to get a list of available options and with
+# --print-defaults to see which it would actually understand and use.
+#
+# If you are new to MariaDB, check out https://mariadb.com/kb/en/basic-mariadb-a
