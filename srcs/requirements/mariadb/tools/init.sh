@@ -9,17 +9,17 @@ GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf;
+#echo "STARTING MARIADB"
 service mariadb start
-until mysqladmin ping --silent; do
-  sleep 1
-done
+until mysqladmin ping --silent; do sleep 1; done
+echo "PING OK, running SQL"
 
 mariadb </tmp/init.sql
+echo "SQL DONE, stopping"
 
 service mariadb stop
-while pgrep -x mysqld >/dev/null; do
-  sleep 1
-done
+echo "STOP ISSUED, waiting for pgrep loop"
+while pgrep -x mysqld >/dev/null; do sleep 1; done
+echo "PGREP LOOP DONE, exec mysqld_safe"
 
 exec mysqld_safe --bind-address=0.0.0.0
