@@ -1,11 +1,1 @@
-docker stop b02771c51d3f
-8d23f108fd33
-c35549feee0b; docker rm b02771c51d3f
-8d23f108fd33
-c35549feee0b; docker rmi -f ad4e9662ba8d
-bfe1f92b528a
-450ec85dceb2; docker volume rm srcs_db_data
-srcs_wp_files; docker network rm 025ecefa9d74
-5c03513fcfcc
-0e8fce3a7009
-eb5b230856f0 2>/dev/null
+docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null
