@@ -1,6 +1,7 @@
 #!/bin/bash
 mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
+chown -R mysql:mysql /var/lib/mysql
 
 cat <<EOF >/tmp/init.sql
 CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
@@ -11,6 +12,7 @@ EOF
 
 #echo "STARTING MARIADB"
 service mariadb start
+#echo "MDB starting"
 until mysqladmin ping --silent; do sleep 1; done
 #echo "DAEMON OK, running SQL"
 
