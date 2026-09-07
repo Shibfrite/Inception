@@ -8,7 +8,7 @@ down:
 re: down all
 
 clean: down
-	docker system prune -af
+	echo $(VM_PASSWORD) | sudo -S docker system prune -af
 
 fclean: clean
-	docker volume rm $$(docker volume ls -q)
+	echo $(VM_PASSWORD) | sudo -S docker volume rm $$(docker volume ls -q)
